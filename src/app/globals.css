@@ -1,51 +1,7 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-background: #0b0e17;
-  --color-surface: #121829;
-  --color-surface-hover: #1a2340;
-  --color-card: rgba(18, 24, 41, 0.7);
-  --color-foreground: #e2e8f0;
-  --color-muted: #64748b;
-  --color-accent: #06d6a0;
-  --color-accent-hover: #05b88a;
-  --color-secondary: #8b5cf6;
-  --color-danger: #f43f5e;
-  --color-warning: #f59e0b;
-  --color-border: rgba(100, 116, 139, 0.2);
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
-}
-
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-sans);
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.4s ease-out forwards;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-.glass-card {
-  background: rgba(18, 24, 41, 0.6);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(100, 116, 139, 0.15);
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.3);
-  border-radius: 3px;
+  background: #ffffff;
+  color: #111111;
+  font-family: system-ui, sans-serif;
 }
