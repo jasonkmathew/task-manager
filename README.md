@@ -62,23 +62,44 @@ src/
 - **Node.js** version 20.9 or later
 - **npm** (comes with Node.js)
 
-### Steps
+### Running on Mac
+
+If you don't have Node.js installed, the easiest way is with Homebrew:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/task-manager.git
+# Install Homebrew if you don't have it
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# 2. Navigate into the project folder
+# Install Node.js
+brew install node
+```
+
+Then clone and run the project:
+
+```bash
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/task-manager.git
 cd task-manager
 
-# 3. Install dependencies
+# Install dependencies
 npm install
 
-# 4. Start the development server
+# Start the dev server
 npm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser and you're good to go.
+
+> **Note for Mac users:** If you get a permissions error on `npm install`, don't use `sudo`. Instead, fix your npm permissions or use a Node version manager like `nvm`.
+
+### Running on Windows / Linux
+
+```bash
+git clone https://github.com/YOUR_USERNAME/task-manager.git
+cd task-manager
+npm install
+npm run dev
+```
 
 ### Build for Production
 

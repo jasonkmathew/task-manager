@@ -1,108 +1,33 @@
-/* ══════════════════════════════════════════════════════════════
-   GLOBAL STYLES — globals.css
-   PURPOSE:  Imports Tailwind CSS v4 and defines the custom 
-             design system tokens (colors, fonts, animations)
-             for the entire Task Manager application.
-   DESIGN:   Dark mode with neon cyan/violet accent colors,
-             glassmorphism cards, and smooth micro-animations.
-   ═══════════════════════════════════════════════════════════ */
-
 @import "tailwindcss";
 
-/* Google Fonts: "Inter" for clean, modern body text 
-   and "Outfit" for bold headings with personality */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
-
-/* ── CUSTOM THEME TOKENS ──────────────────────────────────
-   Tailwind v4 uses @theme to register custom design tokens.
-   These become available as Tailwind utilities automatically
-   (e.g. bg-background, text-foreground, font-heading, etc.) */
 @theme inline {
-  /* Base palette — deep dark backgrounds with slightly 
-     different shades to create depth and layering */
   --color-background: #0b0e17;
   --color-surface: #121829;
   --color-surface-hover: #1a2340;
   --color-card: rgba(18, 24, 41, 0.7);
   --color-foreground: #e2e8f0;
   --color-muted: #64748b;
-
-  /* Accent colors — vibrant neon for interactive elements.
-     Cyan is the primary action color, violet is secondary */
   --color-accent: #06d6a0;
   --color-accent-hover: #05b88a;
-  --color-accent-glow: rgba(6, 214, 160, 0.25);
   --color-secondary: #8b5cf6;
-  --color-secondary-hover: #7c3aed;
-  --color-secondary-glow: rgba(139, 92, 246, 0.25);
   --color-danger: #f43f5e;
-  --color-danger-hover: #e11d48;
-  --color-danger-glow: rgba(244, 63, 94, 0.2);
   --color-warning: #f59e0b;
-
-  /* Border colors with subtle opacity for glass effect */
   --color-border: rgba(100, 116, 139, 0.2);
-  --color-border-accent: rgba(6, 214, 160, 0.3);
-
-  /* Typography — maps to the Google Fonts imported above */
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
 }
 
-/* ── BASE STYLES ──────────────────────────────────────────
-   Applied globally to the html/body for the dark theme */
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
 }
 
-/* Subtle radial gradient background that gives depth 
-   without overwhelming the content */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(ellipse at 20% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(6, 214, 160, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 100%, rgba(244, 63, 94, 0.04) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── CUSTOM ANIMATIONS ────────────────────────────────────
-   Keyframe definitions for micro-interactions that make
-   the UI feel alive and responsive to user actions */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(6, 214, 160, 0.3); }
-  50%      { box-shadow: 0 0 20px rgba(6, 214, 160, 0.5); }
-}
-
-@keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* Utility classes for animations — applied via className */
 .animate-fade-in-up {
   animation: fadeInUp 0.4s ease-out forwards;
 }
@@ -111,38 +36,16 @@ body::before {
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-.animate-slide-down {
-  animation: slideDown 0.3s ease-out forwards;
-}
-
-/* Glassmorphism card utility — backdrop blur with 
-   semi-transparent background for a frosted glass look */
 .glass-card {
   background: rgba(18, 24, 41, 0.6);
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(100, 116, 139, 0.15);
 }
 
-/* Custom scrollbar styling for the task list 
-   that matches the dark theme */
 ::-webkit-scrollbar {
   width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(100, 116, 139, 0.3);
   border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.5);
-}
-
-/* Smooth transitions for all interactive elements */
-* {
-  transition-property: background-color, border-color, color, box-shadow, opacity, transform;
-  transition-duration: 0.15s;
-  transition-timing-function: ease-out;
 }
