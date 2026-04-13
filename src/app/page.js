@@ -1,65 +1,64 @@
-import Image from "next/image";
+// ══════════════════════════════════════════════════════════════
+// FILE: page.js (Home Page — Server Component)
+// PURPOSE:  This is the root page of the application (route: /).
+//           As a Server Component, it contains no state or
+//           interactivity — its only job is to import and render
+//           the TaskBoard client component, which handles all
+//           the task management logic.
+// TYPE:     Server Component (default in Next.js App Router).
+//           Server Components are rendered on the server and
+//           sent as HTML to the browser. They cannot use hooks
+//           like useState or useEffect, but they produce faster
+//           initial page loads because no JavaScript is shipped
+//           for them. The actual interactive logic is delegated
+//           to TaskBoard, which is marked 'use client'.
+// PROPS:    None — this is a top-level page, not a reusable
+//           component. Next.js renders it automatically when
+//           the user navigates to the "/" route.
+// ══════════════════════════════════════════════════════════════
+
+import TaskBoard from "@/components/TaskBoard";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    // The outer container uses min-h-screen to fill the viewport
+    // and centers the TaskBoard both horizontally and vertically.
+    // relative + z-10 ensures content sits above the decorative
+    // gradient background defined in globals.css (::before pseudo).
+    <main className="min-h-screen flex flex-col items-center justify-start px-4 py-8 md:py-12 relative z-10">
+
+      {/* ── APP HEADER ────────────────────────────────────
+          The header is outside TaskBoard because it's purely
+          presentational — no state or interactivity needed.
+          Keeping it here in the Server Component means zero
+          extra JavaScript is sent to the client for it. */}
+      <div className="text-center mb-8 md:mb-12 animate-fade-in-up">
+
+        {/* App icon — a simple emoji used as a visual anchor.
+            The gradient background creates a glowing badge effect */}
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-secondary/20 border border-accent/30 mb-4 text-3xl shadow-lg shadow-accent-glow">
+          ⚡
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {/* App title — uses the Outfit heading font for personality.
+            The gradient text effect (bg-clip-text + text-transparent)
+            makes the title visually striking without using an image */}
+        <h1 className="text-4xl md:text-5xl font-extrabold font-heading bg-gradient-to-r from-accent via-emerald-300 to-secondary bg-clip-text text-transparent tracking-tight">
+          TaskFlow
+        </h1>
+
+        {/* Subtitle — muted color keeps visual hierarchy clear.
+            The user's eye goes to the title first, then this */}
+        <p className="text-muted text-sm md:text-base mt-2 tracking-wide">
+          Organize your day. Get things done.
+        </p>
+      </div>
+
+      {/* ── TASK BOARD ────────────────────────────────────
+          This is the main interactive area. TaskBoard is a
+          Client Component that owns all task state and passes
+          data/callbacks down to its children. */}
+      <TaskBoard />
+    </main>
   );
 }
